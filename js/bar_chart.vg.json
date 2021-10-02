@@ -1,0 +1,95 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 300,
+  "height": 150,
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    }
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/bryanchze/w10Homework/main/data/world_happiness_compiled.csv"
+  },
+  "params": [
+    {
+      "name": "Year_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ],
+        "labels": [
+          "Show All",
+          "2015",
+          "2016",
+          "2017",
+          "2018",
+          "2019",
+          "2020"
+        ],
+        "name": "Year: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": "Year_selection == null || datum.Year == Year_selection"
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "mean",
+          "field": "Happiness Score",
+          "as": "average_score"
+        }
+      ],
+      "groupby": [
+        "Region"
+      ]
+    }
+  ],
+  "encoding": {
+    "y": {
+      "field": "Region",
+      "type": "nominal",
+      "axis": {
+        "grid": false
+      }
+    },
+    "x": {
+      "aggregate": "average",
+      "field": "average_score",
+      "type": "quantitative",
+      "title": "Average Score",
+      "axis": {
+        "grid": false
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": "bar"
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 3
+      },
+      "encoding": {
+        "text": {
+          "field": "average_score",
+          "type": "quantitative",
+          "format": ".2f"
+        }
+      }
+    }
+  ]
+}
