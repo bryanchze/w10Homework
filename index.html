@@ -6,22 +6,76 @@
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
   
-  <!-- CSS file -->
-  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
+  <!-- Import pure.css -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
+
+
+  <!-- CSS file -->
+  <link rel="stylesheet" type="text/css" href="css/style.css" media="all">
+  <title>FIT3179 Project 2</title>
+
+  <style>
+    h1 {text-align: center;}
+    p {text-align: center;}
+  </style>
 
 </head>
 <body>
-  
-<div id="choropleth_map"></div>
+
+  <div class="page">
+     <!-- pure grid group -->
+     <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h1>WORLD HAPPINESS</h1>
+        <p>Happiness is when one is in a state of well-being and contentment in what they are doing or in life in general.<br> The United Nations supplies articles and rankings of the happiness of each country based on the ratings of respondent’s lives correlating with various quality of life factors.</p>
+      </div>
+     </div>
+  <!-- end pure grid group -->
+
+  <!-- pure grid group -->
+  <div class="pure-g">
+      <div class="pure-u-2-3">
+        <div id="choropleth_map" class="vis-container"></div>
+      </div>
+  </div>
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-2-3">
+          <div id="bar_chart" class="vis-container"></div>
+        </div>
+    </div>
+    <!-- end pure grid group -->
+
+     <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1 small-font">
+        <p>This visualisation is created by <a href="https://github.com/KadekSatriadi" target="_blank">Kadek Satriadi</a>. The datasource is <a href="#"" target="_blank">some data repository online</href>.</p>
+      </div>
+    </div>
+     <!-- end pure grid group -->
+
+  </div> <!-- end page -->
 
 <script type="text/javascript">
-
-  var spec2 = "js/choropleth_map.vg.json";
-  vegaEmbed('#choropleth_map', spec2).then(function(result) {
+  var spec1 = "js/choropleth_map.vg.json";
+  var spec2 = "js/bar_chart.vg.json";
+  vegaEmbed('#choropleth_map', spec1, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+  vegaEmbed('#bar_chart', spec2, {"actions": false}).then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
   }).catch(console.error);
 </script>
 
+  
+  
+
 </body>
+
 </html>
