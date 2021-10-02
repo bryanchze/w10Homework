@@ -70,7 +70,20 @@
       "axis": {
         "grid": false
       }
-    }
+    },
+    "tooltip": [
+        {
+            "field": "Region",
+            "type": "nominal",
+            "title": "Region"
+        },
+        {
+            "field": "average_score",
+            "type": "quantitative",
+            "format": ".2f",
+            "title": "Average Score"
+        }   
+            ]
   },
   "layer": [
     {
